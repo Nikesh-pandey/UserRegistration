@@ -1,0 +1,25 @@
+src/main/java/com/yourname/app/
+│
+├── config/
+│   ├── ApplicationConfig.java      <-- PasswordEncoder and AuthManager beans
+│   ├── JwtAuthenticationFilter.java <-- The Gatekeeper (extends OncePerRequestFilter)
+│   ├── JwtService.java             <-- The Token logic (Generate/Validate)
+│   └── SecurityConfiguration.java   <-- The "Master Rules" (HTTP Security)
+│
+├── controllers/
+│   ├── AuthenticationController.java <-- Public: Login and Register endpoints
+│   └── DemoController.java          <-- Protected: Only accessible with a valid JWT
+│
+├── dto/ (Data Transfer Objects)
+│   ├── RegisterRequest.java         <-- Structure for incoming signup data
+│   ├── AuthenticationRequest.java   <-- Structure for incoming login data
+│   └── AuthenticationResponse.java  <-- Structure for outgoing Token data
+│
+├── entities/
+│   └── User.java                    <-- The Database Model (implements UserDetails)
+│
+├── repositories/
+│   └── UserRepository.java          <-- Database Access (Extends JpaRepository)
+│
+└── services/
+    └── AuthenticationService.java   <-- Logic to verify password and create user
