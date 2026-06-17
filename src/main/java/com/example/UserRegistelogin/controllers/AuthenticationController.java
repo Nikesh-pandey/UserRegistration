@@ -1,7 +1,7 @@
 package com.example.UserRegistelogin.controllers;
 
 import com.example.UserRegistelogin.DTOS.*;
-import com.example.UserRegistelogin.Service.AuthenticationService;
+import com.example.UserRegistelogin.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,19 +1,16 @@
-package com.example.UserRegistelogin.Service;
+package com.example.UserRegistelogin.service;
 
-import com.example.UserRegistelogin.Config.JwtService;
+import com.example.UserRegistelogin.config.JwtService;
 import com.example.UserRegistelogin.DTOS.*;
 import com.example.UserRegistelogin.Entities.User;
 import com.example.UserRegistelogin.Repository.UserRepo;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService implements UserDetailsService {
+public class AuthenticationService {
     private final UserRepo repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -36,10 +33,5 @@ public class AuthenticationService implements UserDetailsService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         User user = repository.findByEmail(request.getEmail()).orElseThrow();
         return new AuthenticationResponse(jwtService.generateToken(user));
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("etetr"));
     }
 }
